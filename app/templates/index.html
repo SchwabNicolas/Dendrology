@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link href="{{ url_for('static', filename='css/trees.css') }}" rel="stylesheet" type="text/css">
+    <title>Dendrology</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Bienvenue sur Dendrology</h1>
+    <p>
+        Dendrology est un site web consacré à la dendrologie suisse. Il a pour but de recenser toutes les espèces
+        d'arbres, d'arbustes et d'arbrisseaux présentes en Suisse. Les espèces y sont figurées et nommées. On peut
+        également y trouver un lien vers la meilleure ressource actuelle en la matière.
+    </p>
+    <div class="counter">
+        <h3>{{ species_number }} espèces, réparties dans {{ genera_number }} genres et {{ families_number }}
+            familles</h3>
+    </div>
+    <div class="card-deck">
+        {% for tree in rnd_trees %}
+            <div class="card tree-card" style="width: 24rem;" onclick="location.href='{{ url_for('.tree') }}?id={{ tree.id }}'">
+                {%- if tree.img_filename -%}
+                    <img src="{{ url_for('static', filename="uploads/trees/"+tree.img_filename) }}"
+                         class="card-img-top"
+                         alt="{{ tree.common_name }}">
+                {%- endif -%}
+
+                <div class="card-body">
+                    <h5 class="card-title"><b>{{ tree.common_name }}</b></h5>
+                    <h6 class="card-text"><i>{{ tree.scientific_name }}</i> <small>{{ tree.authors }}</small></h6>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

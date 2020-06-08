@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link href="{{ url_for('static', filename='css/tree.css') }}" rel="stylesheet" type="text/css">
+    <title>{{ tree.scientific_name }}</title>
+{% endblock %}
+
+{% block content %}
+    <button id="back_button" class="btn btn-info" title="Retour" onclick="window.history.back();" type="button">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <div class="row">
+        <div id="common_name">
+            <h3>{{ tree.common_name }}</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="scientific_name">
+            <h4><i>{{ tree.scientific_name }}</i> <small>{{ tree.authors }}</small></h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <img src="{{ url_for('static', filename="uploads/trees/"+tree.img_filename) }}" alt="{{ tree.common_name }}"
+             class="panel-img">
+    </div>
+
+    <div id="icons" class="row">
+        <div class="tree-type-icon">
+            {% if tree.invasive_neophyte %}
+                <abbr title="Néophyte invasif">
+                    <span class="svg-icon" title="Néophyte invasif">NI</span>
+                </abbr>
+            {% endif %}
+
+            {% if tree.tree_type == "con" %}
+                <abbr title="Conifère">
+                    <img alt="Conifère" src="{{ url_for('static', filename="svg/conifer.svg") }}"
+                         class="svg-icon" title="Conifère">
+                </abbr>
+            {% elif tree.tree_type == "bro" %}
+                <abbr title="Feuillu">
+                    <img alt="Feuillu" src="{{ url_for('static', filename="svg/broadleaved.svg") }}"
+                         class="svg-icon" title="Feuillu">
+                </abbr>
+            {% elif tree.tree_type == "bam" %}
+                <abbr title="Bambou">
+                    <img alt="Bambou" src="{{ url_for('static', filename="svg/bamboo.svg") }}"
+                         class="svg-icon"
+                         title="Bambou">
+                </abbr>
+            {% elif tree.tree_type == "pal" %}
+                <abbr title="Palmier">
+                    <img alt="Palmier" src="{{ url_for('static', filename="svg/palm.svg") }}"
+                         class="svg-icon"
+                         title="Palmier">
+                </abbr>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="links">
+        <div class="row">
+            {% if tree.infoflora_page %}
+                <a href="{{ tree.infoflora_page }}">Fiche sur InfoFlora</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if tree.wikipedia_page %}
+                <a href="{{ tree.wikipedia_page }}">Fiche sur Wikipedia (en)</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if tree.invasive_neophyte %}
+                <a href="https://www.infoflora.ch/fr/assets/content/documents/neophytes/neophytes_divers/Liste%20Noire_Watch%20List_2014_v2020_05_18.pdf"
+                   title="Liste des néophytes invasifs suisses">
+                    Liste des néophytes invasifs suisses
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

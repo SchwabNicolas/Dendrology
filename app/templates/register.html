@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Enregistrement</title>
+    <link href="{{ url_for('static', filename='css/register_login.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/backgrounds/bg-register.jpg') }}");
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="align-self-center col-12">
+            <div class="card card-block w-100">
+                <form method="POST" action="{{ url_for('.register') }}" class="form">
+                    {{ form.csrf_token }} {# Anti-cross-site forgery token #}
+                    <div class="card-body">
+                        <h2 class="card-title">S'enregistrer</h2>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                {{ form.name.label }}
+                            </div>
+                            <div class="col-3">
+                                {{ form.name }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                {{ form.email.label }}
+                            </div>
+                            <div class="col-3">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                {{ form.password.label }}
+                            </div>
+                            <div class="col-3">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-self-center col-12">
+                            <input type="submit" class="form-control btn-info w-25" title="S'enregistrer"
+                                   content="S'enregistrer"
+                                   name="register" id="register">
+                        </div>
+                        <br>
+                        <div class="card-footer">
+                            <div><span>Vous avez déjà un compte ?</span> <a href="{{ url_for('.login') }}"
+                                                                            title="Connexion">Connectez-vous</a></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

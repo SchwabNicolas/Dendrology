@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link href="{{ url_for('static', filename='css/trees.css') }}" rel="stylesheet" type="text/css">
+    <title>Liste des arbres</title>
+{% endblock %}
+
+{% block content %}
+    <form method="POST" action="{{ url_for('.trees') }}" class="form-inline" id="filter_form">
+        <div class="input-group">
+            <div class="mb-2 mr-sm-2">
+                {{ form.family }}
+            </div>
+
+            <div class="mb-2 mr-sm-2">
+                {{ form.common_name }}
+            </div>
+
+            <div class="mb-2 mr-sm-2">
+                {{ form.scientific_name }}
+            </div>
+
+            <div class="mb-2 mr-sm-2">
+                <input type="submit" class="form-control btn-info" id="filter_search" name="filter_search"
+                       title="Filtrer" content="Filtrer">
+            </div>
+        </div>
+    </form>
+
+    {# Arbres #}
+    <div class="card-deck">
+        {% for tree in trees %}
+            {% if loop.index0 is divisibleby 3 %}
+                </div>
+                <br>
+                <div class="card-deck">
+            {% endif %}
+            <div class="card tree-card" style="width: 24rem;"
+                 onclick="location.href='{{ url_for('.tree') }}?id={{ tree.id }}'">
+                {%- if tree.img_filename -%}
+                    <img src="{{ url_for('static', filename="uploads/trees/"+tree.img_filename) }}"
+                         class="card-img-top"
+                         alt="{{ tree.common_name }}">
+                {%- endif -%}
+                <div class="card-body">
+                    <h5 class="card-title"><b>{{ tree.common_name }}</b></h5>
+                    <h6 class="card-text"><i>{{ tree.scientific_name }}</i> <small>{{ tree.authors }}</small></h6>
+                    <h6 class="card-text text-secondary"><i>{{ tree.family }}</i></h6>
+
+                </div>
+            </div>
+        {% endfor %}
+        {% if nb_trees is not divisibleby 3 %}
+            {% if nb_trees is divisibleby 2 %}
+                <div class="card" style="width: 24rem; visibility: hidden;">
+                </div>
+            {% else %}
+                <div class="card" style="width: 24rem; visibility: hidden;">
+                </div>
+                <div class="card" style="width: 24rem; visibility: hidden;">
+                </div>
+            {% endif %}
+        {% endif %}
+        </div>
+{% endblock %}

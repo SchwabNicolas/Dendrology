@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Enregistrement</title>
+    <link href="{{ url_for('static', filename='css/register_login.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/backgrounds/bg-login.jpg') }}");
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="align-self-center col-12">
+            <div class="card card-block w-100">
+                <form method="POST" action="{{ url_for('.login') }}" class="form">
+                    {{ form.csrf_token }} {# Anti-cross-site forgery token #}
+                    <div class="card-body">
+                        <h2 class="card-title">Se connecter</h2>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                {{ form.email.label }}
+                            </div>
+                            <div class="col-3">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                {{ form.password.label }}
+                            </div>
+                            <div class="col-3">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                {{ form.remember_me.label }}
+                            </div>
+                            <div class="col-3">
+                                {{ form.remember_me }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-self-center col-12">
+                            <input type="submit" class="form-control btn-info w-25" title="Se connecter"
+                                   content="Se connecter"
+                                   name="login" id="login">
+                        </div>
+                        <br>
+                        <div class="card-footer">
+                            <div><span>Vous n'avez pas de compte ?</span> <a href="{{ url_for('.register') }}"
+                                                                             title="Connexion">Créez-en un</a></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

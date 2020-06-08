@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('add_tree') }}" class="form">
+        {{ form.csrf_token }} {# Anti-cross-site forgery token #}
+
+        {{ form.csrf_token }} {# Anti-cross-site forgery token #}
+
+        <div class="row">
+            <div class="col-2">
+                {{ form.scientific_name.label }}
+            </div>
+            <div class="col-3">
+                {{ form.scientific_name }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.authors.label }}
+            </div>
+            <div class="col-3">
+                {{ form.authors }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.common_name.label }}
+            </div>
+            <div class="col-3">
+                {{ form.common_name }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.infoflora_page.label }}
+            </div>
+            <div class="col-3">
+                {{ form.infoflora_page }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.wikipedia_page.label }}
+            </div>
+            <div class="col-3">
+                {{ form.wikipedia_page }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.family.label }}
+            </div>
+            <div class="col-3">
+                {{ form.family }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.edibility.label }}
+            </div>
+            <div class="col-3">
+                {{ form.edibility }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.tree_type.label }}
+            </div>
+            <div class="col-3">
+                {{ form.tree_type }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.invasive_neophyte.label }}
+            </div>
+            <div class="col-3">
+                {{ form.invasive_neophyte }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2">
+                {{ form.image.label }}
+            </div>
+            <div class="col-3">
+                {{ form.image }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+{% endblock %}

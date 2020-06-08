@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#content {
+    flex: 1 0 auto;
+}
+
+#footer {
+    min-height: 40px;
+    flex-shrink: 0;
+    background-color: white;
+}
+
+.svg-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.card.tree-card {
+    cursor: pointer;
+    box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.3);
+    transition-property: transform, box-shadow;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in;
+}
+
+.card.tree-card:hover {
+    transform: perspective(200px) translateZ(5px);
+    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.3);
+}
+
+.clickable {
+    cursor: pointer;
+}
